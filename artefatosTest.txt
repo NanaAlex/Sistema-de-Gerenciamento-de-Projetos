@@ -1,0 +1,28 @@
+Caso de Teste - Sistema de Gerenciamento de Projetos
+
+TESTE:
+	Criação de projeto:
+		-Nome do projeto
+		-Descrição
+		
+	-> Devem Ter/Receber:
+		-Data de inicio()
+		-Data de conclusao()
+		-Notificação de validação
+
+	-> Podem Ter:
+		-Tarefas com titulos, descrições e tarefas associadas
+		
+	-> Deve PERMITIR:
+		-Edições
+		-Adições
+		-Marcar tarefas como concluidas
+
+	-> Deve Exibir:
+		-Lista de todos os projetos e suas tarefas
+----------------------------------------------------------------------------------
+1) Crie um plano de teste detalhando as estratégias e abordagens que você usará
+para testar o Sistema de Gerenciamento de Projetos. Liste os objetivos do teste,
+os tipos de teste a serem realizados (exemplo: testes funcionais, testes de
+integração, etc.), os critérios de aceitação e o cronograma de execução.
+
