@@ -1,0 +1,24 @@
+	-> n*(adicionar o número de casos) Casos de teste
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*Descrição: Verificar se o usuários possam criar projetos com um nome e descrição,associar a mais tarefas, com adição de
+	    datas de previsão de finalização. Se o sistema permite a edição e exibição dos projetos com suas tarefas, 
+	    se o usuário possa marcar a tarefa/projeto como concluido e se vão receber notificação de aviso da data de 
+	    finalização prevista.
+
+*Pré-condições: Sistema deve permitir que o usuário posso fazer tudo o que está sendo requisitado.
+
+*Passos:
+	1 - Criação de projetos/tarefas com nome e descrição e adição de data de finalização.
+	2 - Edição de projeto/tarefas já existentes.
+	3 - Exibição de projeto/tarefas.
+	4 - Associar tarefas com outros projetos.
+	5 - Marcar as tarefas como conclída.
+	6 - Receber notificação de aviso de data de finalização. 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*Testes
+	- Cenário 1:
+		
