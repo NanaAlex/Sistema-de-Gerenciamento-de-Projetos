@@ -1,28 +1,87 @@
-Caso de Teste - Sistema de Gerenciamento de Projetos
+1)
+Plano de Teste - Sistema de Gerenciamento de Projetos
 
-TESTE:
-	Criação de projeto:
-		-Nome do projeto
-		-Descrição
-		
-	-> Devem Ter/Receber:
-		-Data de inicio()
-		-Data de conclusao()
-		-Notificação de validação
+- Introdução
+	Este plano de teste descreve a abordagem para testar o Sistema de Gerenciamento de Projetos,
+	que tem como objetivo permitir que os usuários criem, editem e acompanhem projetos com tarefas associadas de forma eficiente.
+	O objetivo deste plano é garantir a qualidade e confiabilidade do software antes do lançamento.
 
-	-> Podem Ter:
-		-Tarefas com titulos, descrições e tarefas associadas
-		
-	-> Deve PERMITIR:
-		-Edições
-		-Adições
-		-Marcar tarefas como concluidas
+- Objetivos
+	Os objetivos do teste são:
+		- Verificar se todas as funcionalidades do sistema de gerenciamento de projetos estão implementadas corretamente.
+		- Validar se o sistema atende aos requisitos funcionais e não funcionais especificados.
+		- Identificar e corrigir defeitos encontrados durante o teste.
 
-	-> Deve Exibir:
-		-Lista de todos os projetos e suas tarefas
-----------------------------------------------------------------------------------
-1) Crie um plano de teste detalhando as estratégias e abordagens que você usará
-para testar o Sistema de Gerenciamento de Projetos. Liste os objetivos do teste,
-os tipos de teste a serem realizados (exemplo: testes funcionais, testes de
-integração, etc.), os critérios de aceitação e o cronograma de execução.
+- Escopo
+	O teste abrangerá todas as funcionalidades principais do Sistema de Gerenciamento de Projetos, incluindo:
+		- Criação e edição de projetos (com nome e descrição).
+		- Definição de datas de início e conclusão prevista.
+		- Associação de tarefas com título e descrição.
+		- Edição de projetos e tarefas.
+		- Exibição da lista de projetos e tarefas.
+		- Marcação de tarefas como concluídas.
+		- Notificações quando a data de conclusão estiver próxima.
 
+- Estratégia de Teste
+	A estratégia de teste incluirá:
+		- Testes unitários realizados pelos desenvolvedores para verificar funcionalidades individualmente.
+		- Testes de integração para garantir que os módulos funcionem em conjunto.
+		- Testes de sistema para verificar o funcionamento geral da aplicação.
+		- Testes de aceitação realizados pelos usuários finais em ambiente simulado.
+
+- Casos de Teste
+	Serão criados casos de teste para cada funcionalidade do sistema, 
+	abrangendo cenários positivos e negativos, além de casos de borda.
+
+	Exemplo de Caso de Teste:
+
+	Caso de Teste - Criar Projeto
+		- Descrição: Verificar se é possível criar um novo projeto com nome e descrição.
+		- Pré-condições: O usuário está logado no sistema.
+		- Passos:
+ 			1. Acessar a página de criação de projeto.
+  			2. Preencher os campos de nome e descrição.
+  			3. Clicar no botão "Criar".
+		- Resultado Esperado: O projeto é criado e exibido na lista de projetos.
+
+- Ambiente de Teste
+	O teste será realizado em ambiente dedicado que simule o ambiente de produção. Esse ambiente incluirá:
+		- Navegador Google Chrome (última versão).
+		- Banco de dados populado com dados fictícios.
+		- Simulação de sistema de notificações.
+
+- Recursos
+	- Equipe de Teste: 2 testadores.
+	- Ambiente: Servidor dedicado com estrutura semelhante ao de produção.
+	- Dados: Conjunto de dados fictícios será preparado para os testes.
+
+- Cronograma
+	O teste será realizado em 3 partes:
+		- 1: Testes unitários e testes de integração.
+		- 2: Testes funcionais e de sistema.
+		- 3: Testes de aceitação e correção de falhas.
+
+- Critérios de Aceitação
+	O sistema será considerado aceito quando:
+		- Todos os casos de teste forem executados e aprovados.
+		- Nenhum erro crítico ou bloqueador permanecer aberto.
+		- Funcionalidades essenciais atendam aos requisitos.
+
+- Riscos
+	- Atrasos na entrega de funcionalidades podem impactar o cronograma.
+	- Incompatibilidade entre navegadores pode gerar falhas não previstas.
+
+- Responsabilidades
+	- A equipe de desenvolvimento será responsável por corrigir os defeitos encontrados.
+	- A equipe de teste será responsável pela execução dos testes e registro dos resultados.
+
+- Comunicação
+	Relatórios de teste serão gerados e compartilhados com a equipe de desenvolvimento e gerência para tomada de decisões.
+
+- Aprovação
+	O plano de teste será revisado e aprovado pela equipe responsável antes do início da execução.
+	Alterações futuras também deverão ser aprovadas pelas partes interessadas.
+
+- Considerações Finais
+	Este plano de teste serve como guia para assegurar que o Sistema de Gerenciamento de Projetos seja entregue com qualidade,
+	estabilidade e em conformidade com os requisitos estabelecidos.
