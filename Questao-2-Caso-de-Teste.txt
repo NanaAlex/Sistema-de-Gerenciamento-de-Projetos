@@ -1,24 +1,128 @@
-	-> n*(adicionar o n�mero de casos) Casos de teste
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+==================================================
+REQUISITO 1: O sistema deve permitir que os usuários criem projetos, inserindo um nome e uma descrição.
+==================================================
 
-*Descri��o: Verificar se o usu�rios possam criar projetos com um nome e descri��o,associar a mais tarefas, com adi��o de
-	    datas de previs�o de finaliza��o. Se o sistema permite a edi��o e exibi��o dos projetos com suas tarefas, 
-	    se o usu�rio possa marcar a tarefa/projeto como concluido e se v�o receber notifica��o de aviso da data de 
-	    finaliza��o prevista.
+Caso de Teste 1.1 - Criação com nome e descrição válidos
+Descrição: Verificar se o sistema permite criar um projeto com nome e descrição corretos.
+Pré-condições: Usuário logado e com acesso à tela de criação.
+Passos: Acessar "Criar Projeto", preencher nome e descrição, clicar em "Salvar".
+Dados: Nome: "Projeto A", Descrição: "Descrição do Projeto A"
+Resultado Esperado: Projeto criado com sucesso e exibido na lista.
 
-*Pr�-condi��es: Sistema deve permitir que o usu�rio posso fazer tudo o que est� sendo requisitado.
+Caso de Teste 1.2 - Nome em branco
+Descrição: Verificar se o sistema bloqueia a criação de projeto sem nome.
+Pré-condições: Usuário na tela de criação.
+Passos: Preencher descrição, deixar nome em branco, salvar.
+Dados: Nome: "", Descrição: "Sem nome"
+Resultado Esperado: Sistema exibe erro de campo obrigatório.
 
-*Passos:
-	1 - Cria��o de projetos/tarefas com nome e descri��o e adi��o de data de finaliza��o.
-	2 - Edi��o de projeto/tarefas j� existentes.
-	3 - Exibi��o de projeto/tarefas.
-	4 - Associar tarefas com outros projetos.
-	5 - Marcar as tarefas como concl�da.
-	6 - Receber notifica��o de aviso de data de finaliza��o. 
+Caso de Teste 1.3 - Nome com caracteres inválidos
+Descrição: Verificar comportamento ao inserir caracteres inválidos.
+Pré-condições: Usuário na tela de criação.
+Passos: Preencher nome com "@@@", descrição válida, salvar.
+Dados: Nome: "@@@", Descrição: "Caracteres inválidos"
+Resultado Esperado: Sistema rejeita ou limpa o campo, exibindo aviso.
 
+==================================================
+REQUISITO 2: Os projetos devem ter uma data de início e uma data de conclusão prevista.
+==================================================
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-*Testes
-	- Cen�rio 1:
-		
+Caso de Teste 2.1 - Inserção de datas válidas
+Descrição: Verificar se datas válidas são aceitas.
+Pré-condições: Projeto criado, tela de edição acessível.
+Passos: Editar projeto, inserir início: 01/09/2025, fim: 15/09/2025.
+Resultado Esperado: Projeto atualizado com sucesso.
+
+Caso de Teste 2.2 - Data de conclusão antes da data de início
+Descrição: Verificar se o sistema bloqueia datas incoerentes.
+Dados: Início: 10/09/2025, Fim: 05/09/2025
+Resultado Esperado: Sistema exibe erro e não salva.
+
+Caso de Teste 2.3 - Campos de data em branco
+Descrição: Verificar obrigatoriedade das datas.
+Dados: Início: "", Fim: ""
+Resultado Esperado: Sistema bloqueia salvamento e exige preenchimento.
+
+==================================================
+REQUISITO 3: Cada projeto pode conter várias tarefas associadas, com um título e uma descrição.
+==================================================
+
+Caso de Teste 3.1 - Adição de tarefas válidas
+Descrição: Verificar se é possível adicionar várias tarefas com dados válidos.
+Dados: Título: "Tarefa 1", Descrição: "Descrição da tarefa"
+Resultado Esperado: Tarefa associada com sucesso ao projeto.
+
+Caso de Teste 3.2 - Título da tarefa em branco
+Descrição: Verificar se o sistema exige título ao adicionar tarefa.
+Dados: Título: "", Descrição: "Sem título"
+Resultado Esperado: Sistema exibe erro e bloqueia ação.
+
+Caso de Teste 3.3 - Descrição longa
+Descrição: Verificar comportamento ao exceder limite de caracteres na descrição.
+Dados: Descrição com 2000 caracteres
+Resultado Esperado: Sistema corta ou rejeita campo com mensagem de erro.
+
+==================================================
+REQUISITO 4: O sistema deve permitir a edição de projetos e suas respectivas tarefas.
+==================================================
+
+Caso de Teste 4.1 - Edição bem-sucedida de projeto
+Descrição: Verificar se nome e descrição do projeto podem ser alterados.
+Resultado Esperado: Projeto salvo com novos dados.
+
+Caso de Teste 4.2 - Edição de tarefa com novo título e descrição
+Descrição: Verificar se tarefa associada pode ser editada.
+Resultado Esperado: Tarefa atualizada corretamente na visualização do projeto.
+
+Caso de Teste 4.3 - Tentativa de edição com campos vazios
+Descrição: Verificar bloqueio ao tentar salvar sem preencher campos obrigatórios.
+Resultado Esperado: Sistema exibe erros e não salva edição.
+
+==================================================
+REQUISITO 5: O sistema deve exibir uma lista de todos os projetos e suas tarefas.
+==================================================
+
+Caso de Teste 5.1 - Exibição de múltiplos projetos com tarefas
+Descrição: Verificar se lista mostra todos os projetos com tarefas associadas.
+Resultado Esperado: Lista completa e organizada.
+
+Caso de Teste 5.2 - Projeto sem tarefas associadas
+Descrição: Verificar como o sistema exibe projeto sem tarefas.
+Resultado Esperado: Projeto é exibido com aviso "sem tarefas" ou seção vazia.
+
+Caso de Teste 5.3 - Nenhum projeto cadastrado
+Descrição: Verificar resposta do sistema ao acessar lista vazia.
+Resultado Esperado: Mensagem “Nenhum projeto encontrado” é exibida.
+
+==================================================
+REQUISITO 6: O sistema deve permitir que os usuários marquem as tarefas como concluídas.
+==================================================
+
+Caso de Teste 6.1 - Marcar tarefa como concluída
+Descrição: Verificar se usuário consegue marcar tarefa como concluída.
+Resultado Esperado: Status alterado para "concluída" e tarefa riscada ou destacada.
+
+Caso de Teste 6.2 - Marcar tarefa já concluída
+Descrição: Verificar se sistema evita múltiplas conclusões.
+Resultado Esperado: Sistema ignora ou exibe mensagem "Tarefa já concluída".
+
+Caso de Teste 6.3 - Cancelar marcação de conclusão
+Descrição: Verificar se é possível reverter uma tarefa concluída.
+Resultado Esperado: Tarefa volta ao estado “pendente”.
+
+==================================================
+REQUISITO 7: Os usuários devem receber notificações quando a data de conclusão de uma tarefa estiver próxima.
+==================================================
+
+Caso de Teste 7.1 - Tarefa a vencer em 2 dias
+Descrição: Verificar se notificação é enviada antes do vencimento.
+Resultado Esperado: Notificação visível ou e-mail enviado.
+
+Caso de Teste 7.2 - Tarefa vencida
+Descrição: Verificar se o sistema diferencia vencidas de próximas do prazo.
+Resultado Esperado: Sistema destaca como "Atrasada" em vez de "Próxima".
+
+Caso de Teste 7.3 - Tarefa sem data de vencimento
+Descrição: Verificar comportamento quando não há data definida.
+Resultado Esperado: Nenhuma notificação é gerada.
