@@ -1,1 +1,418 @@
-Matriz de Rastreabilidade
+=========================
+ROTEIRO DE TESTE
+=========================
+Este plano de teste descreve a abordagem para testar o Sistema de Gerenciamento de Projetos.
+Objetivo: garantir a qualidade e confiabilidade do software antes do lançamento.
+
+Escopo:
+- Criação e edição de projetos (nome e descrição).
+- Definição de datas de início e conclusão prevista.
+- Associação e edição de tarefas (título e descrição).
+- Exibição da lista de projetos e tarefas.
+- Marcação de tarefas como concluídas.
+- Notificações quando a data de conclusão estiver próxima.
+
+Estratégia:
+- Testes unitários, integração, sistema e aceitação.
+- Casos cobrindo cenários positivos, negativos e de borda.
+
+Ambiente de Teste:
+- Google Chrome (última versão)
+- Banco de dados com massa fictícia
+- Servidor dedicado simulando produção
+
+Critérios de Aceitação:
+- Todos os casos executados e aprovados
+- Nenhum erro crítico ou bloqueador
+- Funcionalidades essenciais atendem aos requisitos
+
+
+=========================
+MATRIZ DE RASTREABILIDADE
+=========================
+Requisito 1: Criar projetos com nome e descrição
+ Casos de Teste: CT-1.1, CT-1.2, CT-1.3
+
+Requisito 2: Projetos devem ter datas de início e conclusão
+ Casos de Teste: CT-2.1, CT-2.2, CT-2.3
+
+Requisito 3: Projetos podem conter várias tarefas (título e descrição)
+ Casos de Teste: CT-3.1, CT-3.2, CT-3.3
+
+Requisito 4: Edição de projetos e tarefas
+ Casos de Teste: CT-4.1, CT-4.2, CT-4.3
+
+Requisito 5: Exibição de lista de projetos e tarefas
+ Casos de Teste: CT-5.1, CT-5.2, CT-5.3
+
+Requisito 6: Marcar tarefas como concluídas
+ Casos de Teste: CT-6.1, CT-6.2, CT-6.3
+
+Requisito 7: Notificações de tarefas próximas do vencimento
+ Casos de Teste: CT-7.1, CT-7.2, CT-7.3
+
+
+=========================
+ROTEIROS DE TESTE
+=========================
+
+-----------------------------------------
+Roteiro de Teste - CT-1.1 - Criação de projeto com dados válidos
+Objetivo: Verificar criação de projeto com nome e descrição válidos.
+Pré-condições: Usuário autenticado; página 'Criar Projeto' acessível.
+Passos:
+ 1. Abrir navegador; digitar a URL do sistema; pressionar Enter.
+ 2. Navegar até 'Criar Projeto'.
+ 3. Preencher Nome = "Projeto A".
+ 4. Preencher Descrição = "Descrição do Projeto A".
+ 5. Clicar em "Salvar".
+Dados de Teste:
+ - Nome: "Projeto A"
+ - Descrição: "Descrição do Projeto A"
+Resultado Esperado:
+ - Projeto é criado e exibido na lista de projetos com os dados informados.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-1.2 - Bloqueio ao criar projeto sem nome
+Objetivo: Verificar bloqueio de criação de projeto sem nome.
+Pré-condições: Usuário autenticado; página 'Criar Projeto' acessível.
+Passos:
+ 1. Abrir navegador e acessar a URL do sistema.
+ 2. Navegar até 'Criar Projeto'.
+ 3. Deixar o campo Nome em branco.
+ 4. Preencher Descrição = "Sem nome".
+ 5. Clicar em "Salvar".
+Dados de Teste:
+ - Nome: ""
+ - Descrição: "Sem nome"
+Resultado Esperado:
+ - Sistema não permite salvar e exibe mensagem clara de campo obrigatório (Nome).
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-1.3 - Nome do projeto com caracteres inválidos
+Objetivo: Verificar comportamento ao inserir caracteres inválidos no nome.
+Pré-condições: Usuário autenticado; página 'Criar Projeto' acessível.
+Passos:
+ 1. Acessar 'Criar Projeto'.
+ 2. Preencher Nome = "@@@".
+ 3. Preencher Descrição = "Caracteres inválidos".
+ 4. Clicar em "Salvar".
+Dados de Teste:
+ - Nome: "@@@"
+ - Descrição: "Caracteres inválidos"
+Resultado Esperado:
+ - Sistema rejeita o valor com mensagem de validação OU normaliza conforme regra; não deve criar o projeto com nome inválido.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-2.1 - Inserção de datas válidas no projeto
+Objetivo: Validar que datas válidas de início e fim são aceitas e persistidas.
+Pré-condições: Projeto existente; usuário autenticado; tela de edição acessível.
+Passos:
+ 1. Acessar 'Editar Projeto'.
+ 2. Informar Data de Início = 01/09/2025.
+ 3. Informar Data de Conclusão = 15/09/2025.
+ 4. Salvar alterações.
+Dados de Teste:
+ - Início: 01/09/2025
+ - Fim: 15/09/2025
+Resultado Esperado:
+ - Projeto é atualizado com sucesso e as datas aparecem corretamente na visualização.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-2.2 - Bloqueio quando data de conclusão < data de início
+Objetivo: Garantir que o sistema bloqueie datas incoerentes.
+Pré-condições: Projeto existente; usuário autenticado; tela de edição acessível.
+Passos:
+ 1. Acessar 'Editar Projeto'.
+ 2. Informar Data de Início = 10/09/2025.
+ 3. Informar Data de Conclusão = 05/09/2025.
+ 4. Clicar em 'Salvar'.
+Dados de Teste:
+ - Início: 10/09/2025
+ - Fim: 05/09/2025
+Resultado Esperado:
+ - Sistema não salva e exibe mensagem de erro de consistência de datas.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-2.3 - Campos de data em branco
+Objetivo: Verificar obrigatoriedade das datas de início e conclusão.
+Pré-condições: Projeto existente; usuário autenticado; tela de edição acessível.
+Passos:
+ 1. Acessar 'Editar Projeto'.
+ 2. Deixar os campos Data de Início e Data de Conclusão em branco.
+ 3. Clicar em 'Salvar'.
+Dados de Teste:
+ - Início: ""
+ - Fim: ""
+Resultado Esperado:
+ - Sistema bloqueia o salvamento e orienta o preenchimento dos campos obrigatórios.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-3.1 - Adicionar tarefas válidas ao projeto
+Objetivo: Verificar se é possível adicionar várias tarefas com dados válidos.
+Pré-condições: Projeto existente; usuário autenticado; tela de tarefas acessível.
+Passos:
+ 1. Acessar o projeto alvo.
+ 2. Selecionar 'Adicionar Tarefa'.
+ 3. Preencher Título = "Tarefa 1".
+ 4. Preencher Descrição = "Descrição da tarefa".
+ 5. Clicar em 'Salvar'.
+ 6. Repetir para mais de uma tarefa, se necessário.
+Dados de Teste:
+ - Título: "Tarefa 1"
+ - Descrição: "Descrição da tarefa"
+Resultado Esperado:
+ - Tarefas são criadas e listadas no projeto.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-3.2 - Bloqueio ao adicionar tarefa sem título
+Objetivo: Verificar obrigatoriedade do título na criação da tarefa.
+Pré-condições: Projeto existente; usuário autenticado; tela de tarefas acessível.
+Passos:
+ 1. Acessar o projeto alvo.
+ 2. Selecionar 'Adicionar Tarefa'.
+ 3. Deixar Título em branco.
+ 4. Preencher Descrição = "Sem título".
+ 5. Clicar em 'Salvar'.
+Dados de Teste:
+ - Título: ""
+ - Descrição: "Sem título"
+Resultado Esperado:
+ - Sistema bloqueia a criação e exibe mensagem de campo obrigatório (Título).
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-3.3 - Descrição de tarefa acima do limite
+Objetivo: Verificar comportamento ao exceder o limite de caracteres na descrição.
+Pré-condições: Projeto existente; usuário autenticado; tela de tarefas acessível.
+Passos:
+ 1. Acessar o projeto alvo.
+ 2. Selecionar 'Adicionar Tarefa'.
+ 3. Preencher Título = "Tarefa 2".
+ 4. Preencher Descrição com 2000 caracteres.
+ 5. Clicar em 'Salvar'.
+Dados de Teste:
+ - Título: "Tarefa 2"
+ - Descrição: (2000 caracteres)
+Resultado Esperado:
+ - Sistema rejeita ou limita o campo e exibe mensagem adequada; tarefa não deve ser criada com descrição acima do limite.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-4.1 - Edição de projeto válida
+Objetivo: Verificar alteração de nome e descrição do projeto.
+Pré-condições: Projeto existente; usuário autenticado; tela de edição acessível.
+Passos:
+ 1. Acessar 'Editar Projeto'.
+ 2. Alterar Nome = "Projeto A (v2)".
+ 3. Alterar Descrição = "Descrição atualizada".
+ 4. Clicar em 'Salvar'.
+Dados de Teste:
+ - Nome: "Projeto A (v2)"
+ - Descrição: "Descrição atualizada"
+Resultado Esperado:
+ - Projeto salvo com novos dados e refletido na listagem/visualização.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-4.2 - Edição de tarefa válida
+Objetivo: Verificar que tarefa associada pode ser editada (título e descrição).
+Pré-condições: Projeto e tarefa existentes; usuário autenticado.
+Passos:
+ 1. Acessar o projeto.
+ 2. Localizar a tarefa alvo e clicar em 'Editar'.
+ 3. Alterar Título = "Tarefa 1 (v2)".
+ 4. Alterar Descrição = "Descrição atualizada".
+ 5. Salvar.
+Dados de Teste:
+ - Título: "Tarefa 1 (v2)"
+ - Descrição: "Descrição atualizada"
+Resultado Esperado:
+ - Tarefa é atualizada e a visualização do projeto reflete as alterações.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-4.3 - Bloqueio ao salvar edição com campos obrigatórios vazios
+Objetivo: Verificar bloqueio ao tentar salvar projeto/tarefa sem preencher campos obrigatórios.
+Pré-condições: Projeto/tarefa existentes; usuário autenticado.
+Passos:
+ 1. Acessar a tela de edição (projeto ou tarefa).
+ 2. Apagar valores dos campos obrigatórios (ex.: Nome ou Título).
+ 3. Clicar em 'Salvar'.
+Dados de Teste:
+ - Nome/Título: ""
+Resultado Esperado:
+ - Sistema não salva e apresenta mensagens de validação para os campos obrigatórios.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-5.1 - Exibição de múltiplos projetos com tarefas
+Objetivo: Verificar se a lista mostra todos os projetos e tarefas associadas.
+Pré-condições: Usuário autenticado; base com múltiplos projetos e tarefas.
+Passos:
+ 1. Acessar a lista de projetos.
+ 2. Observar a exibição de cada projeto e suas tarefas.
+Resultado Esperado:
+ - Lista apresenta todos os projetos; tarefas associadas aparecem organizadas por projeto.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-5.2 - Exibição de projeto sem tarefas
+Objetivo: Verificar como o sistema exibe um projeto sem tarefas.
+Pré-condições: Usuário autenticado; existe ao menos um projeto sem tarefas.
+Passos:
+ 1. Acessar a lista de projetos.
+ 2. Localizar projeto sem tarefas.
+Resultado Esperado:
+ - Projeto é exibido e indica 'sem tarefas' ou seção de tarefas vazia sem erros.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-5.3 - Exibição quando não há projetos cadastrados
+Objetivo: Verificar resposta do sistema para lista vazia de projetos.
+Pré-condições: Usuário autenticado; base sem projetos.
+Passos:
+ 1. Acessar a lista de projetos.
+Resultado Esperado:
+ - Mensagem 'Nenhum projeto encontrado' é exibida; não ocorre erro.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-6.1 - Marcar tarefa como concluída
+Objetivo: Verificar que o usuário consegue marcar uma tarefa como concluída.
+Pré-condições: Projeto e tarefa pendente existentes; usuário autenticado.
+Passos:
+ 1. Acessar o projeto.
+ 2. Localizar tarefa pendente.
+ 3. Acionar 'Concluir' ou checkbox de conclusão.
+Resultado Esperado:
+ - Status muda para 'concluída' e UI reflete (risco/destaque); persistência confirmada.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-6.2 - Tentar concluir tarefa já concluída
+Objetivo: Verificar que o sistema trata múltiplas conclusões da mesma tarefa.
+Pré-condições: Projeto e tarefa já concluída; usuário autenticado.
+Passos:
+ 1. Acessar o projeto.
+ 2. Localizar tarefa já concluída.
+ 3. Acionar novamente 'Concluir'.
+Resultado Esperado:
+ - Sistema ignora ou informa 'Tarefa já concluída'; não duplica estados.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-6.3 - Cancelar marcação de conclusão
+Objetivo: Verificar que é possível reverter tarefa concluída para pendente.
+Pré-condições: Projeto e tarefa concluída; usuário autenticado.
+Passos:
+ 1. Acessar o projeto.
+ 2. Localizar tarefa concluída.
+ 3. Acionar 'Desfazer conclusão' ou desmarcar checkbox.
+Resultado Esperado:
+ - Tarefa volta ao estado 'pendente'; UI e persistência atualizadas.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-7.1 - Notificação de tarefa a vencer
+Objetivo: Verificar envio/exibição de notificação quando falta pouco para o prazo.
+Pré-condições: Projeto com tarefa cuja data de conclusão é em 2 dias; serviço de notificação ativo.
+Passos:
+ 1. Aguardar ou simular a proximidade do prazo (2 dias).
+ 2. Verificar painel/notificações/e-mail.
+Dados de Teste:
+ - Data atual: T-2 dias da conclusão
+Resultado Esperado:
+ - Notificação é gerada e visível (ou e-mail enviado) com conteúdo coerente.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-7.2 - Diferenciar tarefa vencida de tarefa próxima do prazo
+Objetivo: Verificar que tarefas vencidas são destacadas como 'Atrasadas'.
+Pré-condições: Projeto com tarefa com data já vencida; serviço de notificação ativo.
+Passos:
+ 1. Acessar lista/visualização do projeto.
+ 2. Localizar tarefa vencida.
+Resultado Esperado:
+ - Tarefa aparece com status/estilo 'Atrasada' (não apenas 'Próxima').
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+-----------------------------------------
+Roteiro de Teste - CT-7.3 - Tarefa sem data não gera notificação
+Objetivo: Verificar que tarefas sem data de vencimento não disparam notificação.
+Pré-condições: Projeto com tarefa sem data de conclusão; serviço de notificação ativo.
+Passos:
+ 1. Acessar lista/visualização do projeto.
+ 2. Verificar fila/painel de notificações.
+Resultado Esperado:
+ - Nenhuma notificação é gerada para a tarefa sem data.
+Ambiente: Chrome (última versão), DB com massa fictícia, servidor de teste
+Resultado do Teste: [PASS/FAIL]
+
+
+=========================
+RELATÓRIO DE EXECUÇÃO DE TESTES
+=========================
+Data da execução: [dd/mm/aaaa]
+Responsável: [Nome do testador]
+
+Resultados dos Testes:
+
+ID     | Descrição                                      | Resultado
+-------|------------------------------------------------|----------
+CT-1.1 | Criar projeto com dados válidos                | [PASS/FAIL]
+CT-1.2 | Criar projeto sem nome                         | [PASS/FAIL]
+CT-1.3 | Criar projeto com caracteres inválidos         | [PASS/FAIL]
+CT-2.1 | Inserção de datas válidas                      | [PASS/FAIL]
+CT-2.2 | Data de fim antes da data de início            | [PASS/FAIL]
+CT-2.3 | Campos de data em branco                       | [PASS/FAIL]
+CT-3.1 | Adição de tarefas válidas                      | [PASS/FAIL]
+CT-3.2 | Título da tarefa em branco                     | [PASS/FAIL]
+CT-3.3 | Descrição longa                                | [PASS/FAIL]
+CT-4.1 | Edição de projeto válida                       | [PASS/FAIL]
+CT-4.2 | Edição de tarefa válida                        | [PASS/FAIL]
+CT-4.3 | Edição com campos obrigatórios vazios          | [PASS/FAIL]
+CT-5.1 | Exibição de múltiplos projetos                 | [PASS/FAIL]
+CT-5.2 | Projeto sem tarefas                            | [PASS/FAIL]
+CT-5.3 | Lista vazia de projetos                        | [PASS/FAIL]
+CT-6.1 | Marcar tarefa como concluída                   | [PASS/FAIL]
+CT-6.2 | Marcar tarefa já concluída                     | [PASS/FAIL]
+CT-6.3 | Cancelar conclusão de tarefa                   | [PASS/FAIL]
+CT-7.1 | Notificação tarefa a vencer                    | [PASS/FAIL]
+CT-7.2 | Tarefa vencida                                 | [PASS/FAIL]
+CT-7.3 | Tarefa sem data de vencimento                  | [PASS/FAIL]
+
+Observações:
+- Executar em ambiente estável e coletar evidências (prints) por CT.
+- Vincular defeitos (se houver) ao CT correspondente.
+- Critérios de aceitação conforme Plano de Teste.
+
+Conclusão:
+O sistema será aprovado se nenhum defeito crítico ou bloqueador permanecer aberto e os requisitos essenciais forem atendidos.
