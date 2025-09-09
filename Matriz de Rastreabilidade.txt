@@ -1,6 +1,6 @@
 =========================
 ROTEIRO DE TESTE
-=========================
+========================= 
 Este plano de teste descreve a abordagem para testar o Sistema de Gerenciamento de Projetos.
 Objetivo: garantir a qualidade e confiabilidade do software antes do lançamento.
 
